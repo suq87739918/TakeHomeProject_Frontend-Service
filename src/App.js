@@ -1,11 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
-import MapboxTest from "./components/MapboxTest";
+import Mapbox from "./components/Mapbox";
 
 function App() {
   return (
     <div className="App">
-      <MapboxTest />
+      <Mapbox />
     </div>
   );
 }

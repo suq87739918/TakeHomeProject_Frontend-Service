@@ -1,7 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import LegendItem from "./LegendItem";
 
-function Sidebar({ interpolationSum }) {
+function Sidebar({
+  interpolationSum,
+  setShowInterpolation,
+  averageIncome,
+  setShowIncome,
+  setShowPopulation,
+}) {
+  const [isCheckedPopulation, setCheckedPopulation] = useState(false);
+  const [isCheckedIncome, setCheckedIncome] = useState(false);
+  const [isCheckedInterpolation, setCheckedInterpolation] = useState(false);
+
+  const handleInterpolationCheck = () => {
+    setCheckedInterpolation(!isCheckedInterpolation);
+    setShowInterpolation(!isCheckedInterpolation);
+  };
+
+  //Income Checkbox Status
+  const handleIncomeCheck = () => {
+    setCheckedIncome(!isCheckedIncome);
+    setShowIncome(!isCheckedIncome);
+  };
+
+  //Population Checkbox Status
+  const handlePopulationCheck = () => {
+    setCheckedPopulation(!isCheckedPopulation);
+    setShowPopulation(!isCheckedPopulation);
+  };
+
+  console.log("Current averageIncome:", averageIncome);
+
   return (
     <div
       style={{
@@ -16,6 +45,7 @@ function Sidebar({ interpolationSum }) {
         Areal Interpolation With Tract Level Census Data
       </h2>
       <p style={{ textAlign: "center" }}>Interpolation: {interpolationSum}</p>
+      <p style={{ textAlign: "center" }}>Average Income: {averageIncome}</p>
       <hr style={{ width: "100%" }} />
       <div
         style={{
@@ -31,8 +61,35 @@ function Sidebar({ interpolationSum }) {
         />
         <LegendItem
           value="10"
-          text="Interpolation Count of Persons (28 - 24 Years Old) in Tract"
+          text="Interpolation Count of Persons (18 - 24 Years Old) in Tract"
         />
+      </div>
+      <hr style={{ width: "100%" }} />
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <label style={{ display: "block", marginBottom: "10px" }}>
+          <input
+            type="checkbox"
+            checked={isCheckedPopulation}
+            onChange={handlePopulationCheck}
+          />
+          Population
+        </label>
+        <label style={{ display: "block", marginBottom: "10px" }}>
+          <input
+            type="checkbox"
+            checked={isCheckedIncome}
+            onChange={handleIncomeCheck}
+          />
+          Income
+        </label>
+        <label style={{ display: "block", marginBottom: "10px" }}>
+          <input
+            type="checkbox"
+            checked={isCheckedInterpolation}
+            onChange={handleInterpolationCheck}
+          />
+          Interpolation
+        </label>
       </div>
     </div>
   );
