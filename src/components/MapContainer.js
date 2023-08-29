@@ -64,6 +64,7 @@ function MapContainer({
           .substr(2, 9)}`;
         polygonLayers.current.push(sourceId);
 
+        //get geojson data from backend
         map.current.addSource(sourceId, {
           type: "geojson",
           data: JSON.parse(item.geoJSON),
